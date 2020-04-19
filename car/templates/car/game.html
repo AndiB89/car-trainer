@@ -1,0 +1,41 @@
+{% extends "car/base.html" %}
+
+{% block title %}
+    Car Trainer
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-1" align="center">Car Trainer</h1>
+            <p align="center">Welche Modelle kennst du?</p>   
+        </div>
+        
+        <div class="shadow p-4 mb-4 bg-white">
+            <form action="{% url 'game' %}" method="post"> 
+                {% csrf_token %}  
+                <input type="hidden" name="cars" value="{{cars}}" />
+
+                {% for car in cars %}
+                    <div class="shadow p-4 mb-4 bg-white">
+                        <div class="form-check">  
+                            <label for="n_series-{{ forloop.counter }}">Baureihe - vierstellig ohne Leerzeichen</label>
+                            <input name="n_series-{{ forloop.counter }}" type="text" class="form-control" placeholder="Gebe hier die Baureihe ein"/>
+                        </div> 
+                        <p></p>
+                        <img src="{{ car.images.url}}" alt="{{car.name}}" class="img-responsive" style="width:100%">
+                    </div>
+                {% endfor %}
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center"> 
+                            <input type="submit" class="btn btn-success" value="Ergebnis absenden"/> 
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+ 
+      </div>
+{% endblock %}
