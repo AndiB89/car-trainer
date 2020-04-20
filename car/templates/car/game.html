@@ -12,9 +12,9 @@
         </div>
         
         <div class="shadow p-4 mb-4 bg-white">
-            <form action="{% url 'game' %}" method="post"> 
+            <form action="{% url 'checkSeries' %}" method="post"> 
                 {% csrf_token %}  
-                <input type="hidden" name="cars" value="{{cars}}" />
+                <input type="hidden" name="list" value="{{list}}" />
 
                 {% for car in cars %}
                     <div class="shadow p-4 mb-4 bg-white">

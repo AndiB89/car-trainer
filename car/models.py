@@ -9,8 +9,8 @@ class CarManager(models.Manager):
         count = self.aggregate(count=Count('id'))['count']
         random_index = randint(0, count - 1)
         random_list = random.sample(range(1, maxNumber+1), amount)
-        print(random_list)
-        return self.filter(pk__in = random_list)#self.all()[amount]
+        #print(random_list)
+        return self.filter(pk__in = random_list), random_list
 
 
 class Car(models.Model):
