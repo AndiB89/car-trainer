@@ -33,16 +33,37 @@ def checkSeries(request):
     # if form.is_valid():
     #     new_todo = Todo(text=request.POST['text'])
     #     new_todo.save()
-    print("Post Fkt")
 
+    correctAnswer = 0
+    listAnswer = []
+    dictAnswer = {}
     try:
         listIds=request.POST['list']
         listIds=json.loads(listIds)
 
         for key, value in request.POST.items():
-            print(key, value)   
+            listAnswer.append(value)
+            #print(key, value)   
 
-        print(len(listIds))
+        print(listIds)
+
+        for i in listIds:
+            print("ANALYSE")
+            print(i)
+            carCorrect=Car.objects.get(pk=i)
+            print(listAnswer[i])
+            carAnswer = Car.objects.get(series=listAnswer[i])
+
+            print("Anworten")
+            print(carCorrect)
+            print(carAnswer)
+
+            if carCorrect == carAnswer:
+                correctAnswer +=1
+                print("YEEEEAH")
+            #print(car)
+        print("Anzahl richtiger Antworten: ")
+        print(correctAnswer)
     except:
         raise ValueError("Something went wrong.")
     print("Post Fkt")
