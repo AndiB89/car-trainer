@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 import json 
 from .models import Car
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
@@ -36,27 +37,34 @@ def checkSeries(request):
 
     correctAnswer = 0
     listAnswer = []
-    dictAnswer = {}
+    dictResults = {}
     try:
         listIds=request.POST['list']
         listIds=json.loads(listIds)
 
         for key, value in request.POST.items():
-            listAnswer.append(value)
-            #print(key, value)   
+            if key != "list" and key != "csrfmiddlewaretoken":
+                listAnswer.append(value)
+                print("Test KEy Value")
+                print(key, value)   
 
-        print(listIds)
 
-        for i in listIds:
+        for i in range(len(listIds)):
             print("ANALYSE")
-            print(i)
-            carCorrect=Car.objects.get(pk=i)
-            print(listAnswer[i])
-            carAnswer = Car.objects.get(series=listAnswer[i])
+            print("Test i: " + str(listIds[i]))
+            try:
+                carCorrect=Car.objects.get(pk=listIds[i])
+                print(listAnswer[i])
+                carAnswer = Car.objects.get(series=listAnswer[i])
+            except ObjectDoesNotExist:
+                print("Object not exists")
 
-            print("Anworten")
-            print(carCorrect)
-            print(carAnswer)
+            result = {}
+            result["answer"] = listAnswer[i]
+            result["correct"] = carCorrect.series
+            result["result"] = True if carCorrect == carAnswer else False
+            dictResults[i] = result
+
 
             if carCorrect == carAnswer:
                 correctAnswer +=1
@@ -64,6 +72,8 @@ def checkSeries(request):
             #print(car)
         print("Anzahl richtiger Antworten: ")
         print(correctAnswer)
+        print("Finale Tabelle")
+        print(dictResults)
     except:
         raise ValueError("Something went wrong.")
     print("Post Fkt")
