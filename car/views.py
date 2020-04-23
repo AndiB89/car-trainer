@@ -6,9 +6,18 @@ from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
+
+    modi = []
+    modi.append("Klassenbezeichnung")
+    modi.append("Baureihe")
     context = {
-        "maxRounds" : len(Car.objects.all())
+        "maxRounds" : len(Car.objects.all()),
+        "modi" : modi
     }
+
+    print("Max Anzahl an Autos: " + str(len(Car.objects.all())))
+    print("Mögliche Spielmodi: " + str(modi))
+
     
     return render(request, "car/index.html", context)
 
@@ -16,20 +25,26 @@ def index(request):
 @require_POST
 def game(request):
     amount=int(request.POST['n_rounds'])
+    modus=request.POST['modus']
+
+    print("Max gewünschter Runden: " + str(amount))
+    print("Modus: " + str(modus))
+
     cars,listIds = Car.objects.random(amount=amount, maxNumber=len(Car.objects.all()))
-    print(cars)
-    print(listIds)
+    print("Liste an Autos: " + str(cars))
+    print("Liste der Random Ids" + str(listIds))
 
     context = {
         "cars": cars,
         "list": listIds,
+        "modus": modus,
     }
 
     return render(request, "car/game.html", context)
 
 
 @require_POST
-def checkSeries(request):
+def result(request):
     # form = TodoForm(request.POST)
     # if form.is_valid():
     #     new_todo = Todo(text=request.POST['text'])
@@ -37,45 +52,74 @@ def checkSeries(request):
 
     correctAnswer = 0
     listAnswer = []
-    dictResults = {}
+    listResults = []
+    carAnswer=""
     try:
+        modus=request.POST['modus']
         listIds=request.POST['list']
         listIds=json.loads(listIds)
 
         for key, value in request.POST.items():
-            if key != "list" and key != "csrfmiddlewaretoken":
+            # only answers, therefore filter config values
+            if key != "list" and key != "modus" and key != "csrfmiddlewaretoken":
                 listAnswer.append(value)
-                print("Test KEy Value")
+                print("Antworten:")
                 print(key, value)   
 
-
+        print("Liste an Autos: " + str(listIds))
         for i in range(len(listIds)):
-            print("ANALYSE")
-            print("Test i: " + str(listIds[i]))
+            print("Runde: " + str(i))
+            print("Auto: " + str(listIds[i]))
             try:
                 carCorrect=Car.objects.get(pk=listIds[i])
-                print(listAnswer[i])
-                carAnswer = Car.objects.get(series=listAnswer[i])
+                #print(listAnswer[i])
+                if modus == "Klassenbezeichnung":
+                    #Queryset with multiple values
+                    carAnswer = Car.objects.filter(class_name=listAnswer[i])
+                    print("Auto: "+ str(carAnswer))
+                elif modus == "Baureihe":
+                    #Series is unique > one value in carAnswer
+                    carAnswer = Car.objects.get(series=listAnswer[i])
+
             except ObjectDoesNotExist:
                 print("Object not exists")
 
             result = {}
             result["answer"] = listAnswer[i]
             result["correct"] = carCorrect.series
-            result["result"] = True if carCorrect == carAnswer else False
-            dictResults[i] = result
+            result["name"] = carCorrect.name
+            result["image"] = carCorrect.images
 
+            if modus == "Klassenbezeichnung":
+                #print("Klassenbezeichnung")
+                result["result"] = "Leider falsch"
+                for answer in carAnswer:
+                    if carCorrect == answer:
+                        correctAnswer +=1
+                        result["result"] = "Korrekt" 
+                        break                        
 
-            if carCorrect == carAnswer:
-                correctAnswer +=1
-                print("YEEEEAH")
-            #print(car)
+            elif modus == "Baureihe": 
+                if carCorrect == carAnswer:
+                    correctAnswer +=1
+                result["result"] = "Korrekt" if carCorrect == carAnswer else "Leider falsch"
+
+            listResults.append(result)
+
+            
         print("Anzahl richtiger Antworten: ")
         print(correctAnswer)
-        print("Finale Tabelle")
-        print(dictResults)
+
+        context = { 
+            "results" : listResults,
+            "correctAnswer" : correctAnswer,
+            "rounds" : len(listResults),
+            "maxRounds" : len(Car.objects.all()),
+            "modus" : modus,
+        }
+        print(context)
     except:
         raise ValueError("Something went wrong.")
-    print("Post Fkt")
 
-    return redirect('index')
+    return render(request, "car/result.html", context)
+    #return redirect('index')

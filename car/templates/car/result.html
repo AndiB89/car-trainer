@@ -7,12 +7,39 @@
 {% block body %}
     <div class="container">
         <div class="jumbotron">
-            <h1 class="display-1" align="center">Car Trainer</h1>
+            <h1 class="display-1" align="center">Car Trainer - Ergebnis</h1>
             <p align="center">Welche Modelle kennst du?</p>   
         </div>
 
         <div class="shadow p-4 mb-4 bg-white">
-            <h4 class="display-4" align="center">Konfigurator</h4>
+            <h4 class="display-4" align="center">Hier dein Ergebnis</h4>
+            <p align="center">Du hast {{correctAnswer}} von {{rounds}} Antworten korrekt beantwortet.</p>   
+
+            <table class="table">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Klassenbezeichnung</th>
+                    <th scope="col">Bild</th>
+                    <th scope="col">Baureihe</th>
+                    <th scope="col">Antwort</th>
+                    <th scope="col">Ergebnis</th>
+                </tr>
+            
+                {% for result in results %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{result.name}}</td>
+                    <td><img src="{{ result.image.url}}" alt="{{result.name}}" class="img-responsive" style="width:90%"> </td>
+                    <td>{{result.correct}}</td>
+                    <td>{{result.answer}}</td>
+                    <td>{{result.result}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="shadow p-4 mb-4 bg-white">
+            <h1 class="display-1" align="center">Nochmal?</h1>
 
             <form action="{% url 'game' %}" method="post">
                 {% csrf_token %}  
@@ -24,7 +51,6 @@
                         {% endfor %}
                     </select>
                 </div>
-
                 <div class="form-check">  
                     <label for="n_rounds">Anzahl Spielrunden - maximal {{maxRounds}}</label>
                     <input name="n_rounds" type="number" class="form-control" min=1 max="{{maxRounds}}" required/>

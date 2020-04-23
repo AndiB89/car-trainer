@@ -7,6 +7,6 @@ urlpatterns = [
     # views.index refers to file views.py function index
     path("", views.index, name="index"),
     path("game", views.game, name="game"),
-    path("checkSeries", views.checkSeries, name="checkSeries"),
+    path("result", views.result, name="result"),
 
 ]
