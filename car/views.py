@@ -3,6 +3,8 @@ from django.views.decorators.http import require_POST
 import json 
 from .models import Car
 from django.core.exceptions import ObjectDoesNotExist
+import uuid 
+
 
 # Create your views here.
 def index(request):

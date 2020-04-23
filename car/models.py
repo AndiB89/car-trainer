@@ -31,3 +31,13 @@ class Car(models.Model):
     def __str__(self):
         return f"{self.id} - {self.name} ({self.series} - {self.releaseYear})"
 
+class Game(models.Model):
+    givenanswer = models.CharField(max_length=256, blank=True, null=True)
+    correctanswer = models.CharField(max_length=256, blank=True, null=True)
+    correct = models.BooleanField(blank=True, null=True)
+    rownumber = models.IntegerField(blank=True, null=True)
+    sessionid = models.CharField(max_length=256, blank=True, null=True)
+    creation_date = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.id} - {self.givenanswer} - {self.correctanswer} - {self.sessionid}"
