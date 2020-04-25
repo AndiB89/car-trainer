@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 import json 
-from .models import Car
+from .models import Car, Game
 from django.core.exceptions import ObjectDoesNotExist
+from datetime import datetime
 import uuid 
 
 modi = []
@@ -109,6 +110,13 @@ def result(request):
                 if carCorrect == carAnswer:
                     correctAnswer +=1
                 result["result"] = "Korrekt" if carCorrect == carAnswer else "Leider falsch"
+
+            try:
+                gameresult = Game(givenanswer = result["answer"], correctCar=carCorrect, correct = True if result["result"] == "Korrekt" else False, rownumber = i+1, creation_date = datetime.now(), sessionid = uuid.uuid1(), modus = modus)
+                #print(gameresult)
+                gameresult.save()
+            except:
+                raise ValueError("Something went wrong - not able to store in db.")
 
             listResults.append(result)
 

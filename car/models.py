@@ -33,11 +33,12 @@ class Car(models.Model):
 
 class Game(models.Model):
     givenanswer = models.CharField(max_length=256, blank=True, null=True)
-    correctanswer = models.CharField(max_length=256, blank=True, null=True)
+    correctCar = models.ForeignKey(Car, on_delete=models.CASCADE, default="")
     correct = models.BooleanField(blank=True, null=True)
     rownumber = models.IntegerField(blank=True, null=True)
     sessionid = models.CharField(max_length=256, blank=True, null=True)
-    creation_date = models.DateField(blank=True, null=True)
+    creation_date = models.DateTimeField(blank=True, null=True)
+    modus = models.CharField(max_length=256, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.id} - {self.givenanswer} - {self.correctanswer} - {self.sessionid}"
+        return f"{self.id} - {self.givenanswer} - {self.correctCar} - {self.correct} - {self.rownumber} - {self.creation_date} - {self.sessionid}"
