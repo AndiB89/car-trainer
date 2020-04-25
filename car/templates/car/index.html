@@ -68,7 +68,7 @@
                   <div id="collapseTwo" class="collapse" data-parent="#accordion">
                     <div class="card-body">
                         <p> In diesem Modus gilt die vierstellige Baureihe, die sich aus einer dreistelligen, internen Baureihennummer plus führendem Buchstaben zusammensetzt. </p>
-                        <img src="{{Beispiel.images.url}}" alt="{{Beispiel.name}}" class="img-responsive" style="width:40%" class="center"> 
+                        <img src="{{Beispiel.images.url}}"  class="img-responsive" style="width:40%" class="center"> 
                         <p>Lösung: <b>{{Beispiel.series}}</b> </p>
                         <label for ="Baureihe">Liste der führenden Baureihenbuchstaben</label>
                         <ul class="list-group" name = "Baureihe">
@@ -126,7 +126,7 @@
                                             <td>{{car.name}}</td>
                                             <td>{{car.class_name}}</td>
                                             <td>{{car.series}}</td>
-                                            <td><img src="{{ car.images.url}}" alt="{{car.name}}" class="img-responsive" style="width:90%"> </td>
+                                            <td><img src="{{ car.images.url}}" class="img-responsive" style="width:90%"> </td>
                                         </tr>
                                         {% endfor %}
                                     </table>
