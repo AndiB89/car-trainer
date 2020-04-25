@@ -22,8 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'tf$kn90ndbze3%z6gc(*!)nq#e_^)(h580&do-r9&vt49pte$g'
-#SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
@@ -98,11 +97,11 @@ django_heroku.settings(locals())
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd32n04t44f7f27',
-        'USER': 'amoiikevufszbl',
-        'PASSWORD': '78110138e323a78df1e589aafbe40c5c077b5445e4d73ccdc901d2f9a9963af1',
-        'HOST': 'ec2-54-217-204-34.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
+        'NAME': 'os.environ.get('DB_NAME')',
+        'USER': 'os.environ.get('DB_USER')',
+        'PASSWORD': 'os.environ.get('DB_PASSWORD')',
+        'HOST': 'os.environ.get('DB_HOST')',
+        'PORT': 'os.environ.get('DB_PORT')',
     }
 }
 

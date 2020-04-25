@@ -53,7 +53,7 @@
                   <div id="collapseOne" class="collapse" data-parent="#accordion">
                     <div class="card-body">
                         <p>Wenn du diesen Modus wählst, hast du die offizielle Klasssenbezeichnung benennen, in die Baureihen seit dem Frühjahr 1993 eingeteilt werden. Hierbei handelt es sich um Klassenbezeichnungen mit bis zu drei Zeichen, inkl. Vaneo und Viano. Hier ein Beispielfahrzeug:</p>
-                        <img src="{{Beispiel.images.url}}" alt="{{Beispiel.name}}" class="img-responsive" style="width:40%" class="center"> 
+                        <img src="{{Beispiel.image.url}}" class="img-responsive" style="width:40%" class="center"> 
 
                         <p>Lösung: <b>{{Beispiel.class_name}}</b> (Dass es sich dabei um ein Mercedes-AMG G 63 handelt, das vernachlässigen wir der Einfachheit halber :-)</p>
                     </div>
@@ -68,7 +68,7 @@
                   <div id="collapseTwo" class="collapse" data-parent="#accordion">
                     <div class="card-body">
                         <p> In diesem Modus gilt die vierstellige Baureihe, die sich aus einer dreistelligen, internen Baureihennummer plus führendem Buchstaben zusammensetzt. </p>
-                        <img src="{{Beispiel.images.url}}"  class="img-responsive" style="width:40%" class="center"> 
+                        <img src="{{Beispiel.image.url}}"  class="img-responsive" style="width:40%" class="center"> 
                         <p>Lösung: <b>{{Beispiel.series}}</b> </p>
                         <label for ="Baureihe">Liste der führenden Baureihenbuchstaben</label>
                         <ul class="list-group" name = "Baureihe">
@@ -126,7 +126,7 @@
                                             <td>{{car.name}}</td>
                                             <td>{{car.class_name}}</td>
                                             <td>{{car.series}}</td>
-                                            <td><img src="{{ car.images.url}}" class="img-responsive" style="width:90%"> </td>
+                                            <td><img src="{{car.image.url}}" class="img-responsive" style="width:90%"> </td>
                                         </tr>
                                         {% endfor %}
                                     </table>
@@ -143,18 +143,5 @@
               </div>
     </div>
     
-    <div class="shadow p-4 mb-4 bg-white">
-        <h4 class="display-4" align="center">Datenquelle</h4>
-        <div style="border: 2px solid #F0F0F0; margin: 1em auto; padding:1em 1em; max-width:50em; border-radius:.2em;">
-          <a href="https://de.wikipedia.org" style="display:block;flex:0 0 auto;display: flex;flex-direction: column;justify-content: center;padding-right:1em;">
-              <img alt="Wikipedia" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/60px-Wikipedia-logo-v2.svg.png" class="img-responsive" style="width:10%">
-          </a>
-          <div>
-      Diese Webseite basiert auf dem Artikel <a target="_blank" href="https://de.wikipedia.org/wiki/Mercedes-Benz-Pkw">Mercedes-Benz-Pkw</a> 
-      aus der freien Enzyklopädie <a target="_blank" href="https://de.wikipedia.org">Wikipedia</a> 
-      und steht unter der Lizenz <a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de/legalcode"> Creative Commons CC-BY-SA 3.0 Unported</a> (<a target="_blank" href="http://creativecommons.org/licenses/by-sa/3.0/de">Kurzfassung</a>).<br>
-      In der Wikipedia ist eine <a target="_blank" href="https://de.wikipedia.org/w/index.php?title=Mercedes-Benz-Pkw&action=history">Liste der Autoren</a> verfügbar.
-          </div>
-      </div>
-    </div>
+
 {% endblock %}

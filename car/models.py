@@ -26,10 +26,10 @@ class Car(models.Model):
     price = models.IntegerField(blank=True, null=True)
     releaseYear = models.IntegerField(blank=True, null=True)
     isStillProduced = models.BooleanField(blank=True, null=True)
-    images = models.ImageField(upload_to="img",null=True, blank=True)
+    image = models.ImageField(upload_to="img",null=True, blank=True)
 
     def __str__(self):
-        return f"{self.id} - {self.name} ({self.series} - {self.releaseYear})"
+        return f"{self.id} - {self.name} ({self.series} - {self.releaseYear} - {self.image})"
 
 class Game(models.Model):
     givenanswer = models.CharField(max_length=256, blank=True, null=True)

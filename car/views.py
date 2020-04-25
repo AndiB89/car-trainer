@@ -12,8 +12,10 @@ modi.append("Baureihe")
 
 # Create your views here.
 def index(request):
+    test = Car.objects.get(pk=1)
 
 
+    print(Car.objects.all())
     context = {
         "maxRounds" : len(Car.objects.all()),
         "modi" : modi,
