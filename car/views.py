@@ -97,7 +97,7 @@ def result(request):
             result["series"] = carCorrect.series
             result["class_name"] = carCorrect.class_name
             result["name"] = carCorrect.name
-            result["image"] = carCorrect.images
+            result["image"] = carCorrect.image
 
             if modus == "Klassenbezeichnung":
                 #print("Klassenbezeichnung")
