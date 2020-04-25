@@ -90,7 +90,6 @@ WSGI_APPLICATION = 'trainer.wsgi.application'
 #     }
 # }
 
-
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 
