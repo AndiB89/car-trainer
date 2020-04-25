@@ -18,9 +18,10 @@
             <table class="table">
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Modell</th>
                     <th scope="col">Klassenbezeichnung</th>
-                    <th scope="col">Bild</th>
                     <th scope="col">Baureihe</th>
+                    <th scope="col">Bild</th>
                     <th scope="col">Antwort</th>
                     <th scope="col">Ergebnis</th>
                 </tr>
@@ -29,10 +30,20 @@
                 <tr>
                     <td>{{forloop.counter}}</td>
                     <td>{{result.name}}</td>
+                    <td>{{result.class_name}}</td>
+                    <td>{{result.series}}</td>
                     <td><img src="{{ result.image.url}}" alt="{{result.name}}" class="img-responsive" style="width:90%"> </td>
-                    <td>{{result.correct}}</td>
                     <td>{{result.answer}}</td>
-                    <td>{{result.result}}</td>
+
+
+                    <td>
+                        {% if result.result == "Korrekt" %}
+                            <p style="color:#4BB543">{{result.result}}</p>
+                        {% endif %}
+                        {% if result.result == "Leider falsch" %}
+                          <p style="color:red">{{result.result}}</p> 
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </table>

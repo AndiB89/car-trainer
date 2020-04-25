@@ -5,17 +5,19 @@ from .models import Car
 from django.core.exceptions import ObjectDoesNotExist
 import uuid 
 
+modi = []
+modi.append("Klassenbezeichnung")
+modi.append("Baureihe")
 
 # Create your views here.
 def index(request):
 
-    modi = []
-    modi.append("Klassenbezeichnung")
-    modi.append("Baureihe")
+
     context = {
         "maxRounds" : len(Car.objects.all()),
         "modi" : modi,
-        "Beispiel" : Car.objects.get(pk=1)
+        "Beispiel" : Car.objects.get(pk=1),
+        "cars" : Car.objects.all(),
     }
 
     print("Max Anzahl an Autos: " + str(len(Car.objects.all())))
@@ -89,7 +91,8 @@ def result(request):
 
             result = {}
             result["answer"] = listAnswer[i]
-            result["correct"] = carCorrect.series
+            result["series"] = carCorrect.series
+            result["class_name"] = carCorrect.class_name
             result["name"] = carCorrect.name
             result["image"] = carCorrect.images
 
@@ -119,6 +122,8 @@ def result(request):
             "rounds" : len(listResults),
             "maxRounds" : len(Car.objects.all()),
             "modus" : modus,
+            "modi" : modi,
+
         }
         print(context)
     except:

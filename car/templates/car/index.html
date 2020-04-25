@@ -42,7 +42,7 @@
 
         <div class="shadow p-4 mb-4 bg-white">
             <h4 class="display-4" align="center">How to Play</h4>
-            <p>In diesem Trainer stehen Autos aus dem bereich Mercedes Benz PKW zur Verfügung.</p>
+            <p>In diesem Trainer stehen Autos aus dem Bereich Mercedes Benz PKW zur Verfügung.</p>
             <div id="accordion">
                 <div class="card">
                   <div class="card-header">
@@ -83,9 +83,60 @@
                             <li class="list-group-item">Z: Sonderaufbauten z. B. Geländewagen, SUV, Shooting Brake, Maybach</li>
                             <li class="list-group-item">T: Tourer</li>
                             <li class="list-group-item">N: Baureihe mit alternativem Antrieb</li>
-
-
                           </ul>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <a class="card-link" data-toggle="collapse" href="#collapseThree">
+                        Liste aller verfügbaren Fahrzeuge
+                      </a>
+                    </div>
+                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                          <p>Damit du die Fahrzeuge auch lernen kannst, findest du hier eine Aufstellung zu allen Fahrzeugen.</p>  
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Zeige Fahrzeuge
+                          </button>
+                          
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Liste aller Fahrzeuge</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  
+                                    <table class="table">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Modell</th>
+                                            <th scope="col">Klassenbezeichnung</th>
+                                            <th scope="col">Baureihe</th>
+                                            <th scope="col">Bild</th>
+                                        </tr>
+                                    
+                                        {% for car in cars %}
+                                        <tr>
+                                            <td>{{forloop.counter}}</td>
+                                            <td>{{car.name}}</td>
+                                            <td>{{car.class_name}}</td>
+                                            <td>{{car.series}}</td>
+                                            <td><img src="{{ car.images.url}}" alt="{{car.name}}" class="img-responsive" style="width:90%"> </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>                      </div>
                     </div>
                   </div>
                 </div>

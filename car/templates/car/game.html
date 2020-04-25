@@ -21,7 +21,14 @@
                 {% for car in cars %}
                     <div class="shadow p-4 mb-4 bg-white">
                         <div class="form-check">  
-                            <label for="n_series-{{ forloop.counter }}">Baureihe - vierstellig ohne Leerzeichen</label>
+                            <label for="n_series-{{ forloop.counter }}">
+                                {% if modus == "Baureihe" %}
+                                Baureihe - vierstellig ohne Leerzeichen
+                                {% endif %}
+                                {% if modus == "Klassenbezeichnung" %}
+                                Klassenbezeichnung
+                                {% endif %}
+                            </label>
                             <input name="n_series-{{ forloop.counter }}" type="text" class="form-control" placeholder="Gebe hier die Baureihe ein"/>
                         </div> 
                         <p></p>
