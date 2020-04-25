@@ -25,11 +25,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-DB_NAME = 'os.environ.get('DB_NAME')',
-DB_USER = 'os.environ.get('DB_USER')',
-DB_PASSWORD = 'os.environ.get('DB_PASSWORD')',
-DB_HOST = 'os.environ.get('DB_HOST')',
-DB_PORT = 'os.environ.get('DB_PORT')',
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -102,11 +97,11 @@ django_heroku.settings(locals())
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': DB_NAME
-        'USER': DB_USER
-        'PASSWORD': DB_PASSWORD
-        'HOST': DB_HOST
-        'PORT': DB_PORT
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
