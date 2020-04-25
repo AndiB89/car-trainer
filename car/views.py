@@ -14,7 +14,8 @@ def index(request):
     modi.append("Baureihe")
     context = {
         "maxRounds" : len(Car.objects.all()),
-        "modi" : modi
+        "modi" : modi,
+        "Beispiel" : Car.objects.get(pk=1)
     }
 
     print("Max Anzahl an Autos: " + str(len(Car.objects.all())))
