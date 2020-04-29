@@ -23,7 +23,7 @@ INSERT INTO "car_car" ("name", "class_name", "series", "price", "releaseYear", "
 INSERT INTO "car_car" ("name", "class_name", "series", "price", "releaseYear", "isStillProduced", "image") VALUES ('EQC' , 'EQC' , 'N293' , 0 , 2020 , true , 'img/18.jpg');
 INSERT INTO "car_car" ("name", "class_name", "series", "price", "releaseYear", "isStillProduced", "image") VALUES ('G Klasse Geländewagen' , 'G' , 'W463' , 0 , 2020 , true , 'img/19.jpg');
 INSERT INTO "car_car" ("name", "class_name", "series", "price", "releaseYear", "isStillProduced", "image") VALUES ('GLA SUV' , 'GLA' , 'H247' , 0 , 2020 , true , 'img/20.jpg');
-INSERT INTO "car_car" ("name", "class_name", "series", "price", "releaseYear", "isStillProduced", "image") VALUES ('GLB SUV' , 'GLE' , 'X247' , 0 , 2020 , true , 'img/21.jpg');
+INSERT INTO "car_car" ("name", "class_name", "series", "price", "releaseYear", "isStillProduced", "image") VALUES ('GLB SUV' , 'GLB' , 'X247' , 0 , 2020 , true , 'img/21.jpg');
 INSERT INTO "car_car" ("name", "class_name", "series", "price", "releaseYear", "isStillProduced", "image") VALUES ('GLC SUV' , 'GLC' , 'X253' , 0 , 2020 , true , 'img/22.jpg');
 INSERT INTO "car_car" ("name", "class_name", "series", "price", "releaseYear", "isStillProduced", "image") VALUES ('GLE SUV' , 'GLE' , 'V167' , 0 , 2020 , true , 'img/23.jpg');
 INSERT INTO "car_car" ("name", "class_name", "series", "price", "releaseYear", "isStillProduced", "image") VALUES ('GLS SUV' , 'GLS' , 'X167' , 0 , 2020 , true , 'img/24.jpg');
