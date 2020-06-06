@@ -17,12 +17,20 @@ import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# Set environment variables
+os.environ['DB_NAME'] = "dfnluk6suf5ht3"
+os.environ['DB_USER'] = 'vjzkqkklmkxngl'
+os.environ['DB_PASSWORD'] = '98e9fc6f5bd1f8f3551aa1b17f3bc2a6307e54dd75598ffbc519d1d9d3d37757'
+os.environ['DB_HOST'] = 'ec2-46-137-84-173.eu-west-1.compute.amazonaws.com'
+os.environ['DB_PORT'] = '5432'
+os.environ['SECRET_KEY'] = 'tf$kn90ndbze3%z6gc(*!)nq#e_^)(h580&do-r9&vt49pte$g'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = 'tf$kn90ndbze3%z6gc(*!)nq#e_^)(h580&do-r9&vt49pte$g' # os.environ.get('SECRET_KEY')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
@@ -154,3 +162,34 @@ STATICFILES_DIRS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'filters': {
+#         'require_debug_false': {
+#             '()': 'django.utils.log.RequireDebugFalse'
+#         }
+#     },
+#     'handlers': {
+#         'mail_admins': {
+#             'level': 'ERROR',
+#             'filters': ['require_debug_false'],
+#             'class': 'django.utils.log.AdminEmailHandler'
+#         },
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#         }
+#     },
+#     'loggers': {
+#         'django.request': {
+#             'handlers': ['mail_admins'],
+#             'level': 'ERROR',
+#             'propagate': True,
+#         },
+#         'django.db.backends': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG'
+#         },
+#     }
+# }

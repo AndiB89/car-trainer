@@ -74,6 +74,7 @@ def result(request):
                 print("Antworten:")
                 print(key, value)   
 
+        sessionid = uuid.uuid1()
         print("Liste an Autos: " + str(listIds))
         for i in range(len(listIds)):
             print("Runde: " + str(i))
@@ -114,11 +115,11 @@ def result(request):
                 result["result"] = "Korrekt" if carCorrect == carAnswer else "Leider falsch"
 
             try:
-                gameresult = Game(givenanswer = result["answer"], correctCar=carCorrect, correct = True if result["result"] == "Korrekt" else False, rownumber = i+1, creation_date = datetime.now(), sessionid = uuid.uuid1(), modus = modus)
+                gameresult = Game(givenanswer = result["answer"], correctCar=carCorrect, correct = True if result["result"] == "Korrekt" else False, rownumber = i+1, creation_date = datetime.now(), sessionid = sessionid, modus = modus)
                 #print(gameresult)
                 gameresult.save()
             except:
-                raise ValueError("Something went wrong - not able to store in db.")
+                print("Something went wrong - not able to store in db.")
 
             listResults.append(result)
 
@@ -137,7 +138,7 @@ def result(request):
         }
         print(context)
     except:
-        raise ValueError("Something went wrong.")
+        print("Something went wrong.")
 
     return render(request, "car/result.html", context)
     #return redirect('index')
